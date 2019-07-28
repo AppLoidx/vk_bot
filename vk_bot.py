@@ -5,7 +5,7 @@ import requests
 class VkBot:
 
     def __init__(self, user_id):
-        print("Создан объект бота!")
+        print("\nСоздан объект бота!")
 
         self._USER_ID = user_id
         self._USERNAME = self._get_user_name_from_vk_id(user_id)
