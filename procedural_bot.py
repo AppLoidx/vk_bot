@@ -1,3 +1,5 @@
+import random
+
 import vk_api
 from vk_api.longpoll import VkLongPoll, VkEventType
 
@@ -5,11 +7,11 @@ from commander.commander import Commander
 
 
 def write_msg(user_id, message):
-    vk.method('messages.send', {'user_id': user_id, 'message': message})
+    vk.method('messages.send', {'user_id': user_id, 'message': message, 'random_id': random.randint(0, 2048)})
 
 
 # API-ключ созданный ранее
-token = "6a9c267cd469388709a9e9acaddbe0aa81a0abbf12239b3e597a31729ffbddb9c88e80a443554c918b8f7"
+token = "Your API token here..."
 
 # Авторизуемся как сообщество
 vk = vk_api.VkApi(token=token)
