@@ -1,0 +1,19 @@
+import vk_api
+from vk_api.longpoll import VkLongPoll, VkEventType
+
+vk_session = vk_api.VkApi(token = 'dda72434d647022c3a39a0a192e054e4e02d1ce7a211971263c6e4b9548bd539025459f72de84c5c19380')
+
+session_api = vk_session.get_api()
+longpool = VkLongPoll(vk_session) #Работа с событиями сообщества в реальном времени
+
+def send_some_msg(id, some_text):
+    vk_session.method("messages.send", {"user_id":id, "message":some_text, "random_id":0})
+
+for event in longpool.listen():
+    if event.type == VkEventType.MESSAGE_NEW:
+        if event.to_me:
+            msg = event.text.lower()
+            id  = event.user_id
+            print(msg)
+            if msg == "hi":
+                send_some_msg(id,"Hi friend")
